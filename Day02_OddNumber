@@ -1,0 +1,9 @@
+let numer = 20;
+
+for(let i =1 ; i<=numer;i++)
+{
+    if(i%2==1)
+    {
+        console.log(i,"is OddNumer");
+    }
+}
