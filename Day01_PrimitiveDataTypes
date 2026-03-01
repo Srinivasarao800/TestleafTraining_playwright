@@ -1,0 +1,19 @@
+var FirstName = "Srinivasarao";
+console.log('FirstName is '+ FirstName +" Data type is",typeof FirstName);
+
+var CompanyName = "TestLeaf";
+console.log('CompanyName is '+CompanyName+' Data type is',typeof CompanyName);
+
+var MobileNumber = 6305726460;
+
+console.log('MobileNumber is'+MobileNumber+' Data type is',typeof MobileNumber);
+
+
+var isAutomtion = true;
+console.log('isAutomtion  '+isAutomtion+' Data type is',typeof isAutomtion);
+
+
+var hasPlayWright;
+console.log('hasPlayWright  '+hasPlayWright+' Data type is',typeof hasPlayWright);
+
+
