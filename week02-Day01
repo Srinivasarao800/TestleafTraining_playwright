@@ -1,0 +1,55 @@
+
+/*
+Given a string s consisting of words and spaces, return the length of the last word in the string.
+Example 1:
+Input: s = "Hello World"
+Output: 5
+Explanation: The last word is "World" with length 5.
+Example 2:
+Input: s = " fly me to the moon "
+Output: 4
+Explanation:
+*/
+ 
+let s ='hello world';    //Declearing the String
+let s3 = " fly me to the moon "; //Declearing the String
+let s1=s3.trim(); //Tirm the String -->Removes the leading and trailing white space and line terminator characters from a string.
+console.log(s1);
+let ssplit=[]; //Declear the Array to Store the splited string.
+let ssplit1=[];  //Declear the Array to Store the splited string.
+ ssplit= s.split(' ');   //Spelit method is (' ') used to split the sting when space occured..
+ ssplit1= s1.split(' '); //Spelit method is (' ') used to split the sting when space occured..
+console.log(ssplit[ssplit.length-1].length);   //ssplit.length-1 -->it will print the number of words is exist in it.
+console.log(ssplit1[ssplit1.length-1.].length);
+
+
+===============================================================================================
+/*Example 3: 
+Write a function to check if two strings are anagrams.
+Input: isAnagram('listen', 'silent')
+Output: true
+Input: isAnagram('hello', 'world') 
+Output: false
+*/
+
+let name1  = "listen";
+let name2  = "silent";
+let name3=[];
+let name4=[];
+name3= name1.toLocaleLowerCase().replaceAll(' ','').split('').sort().join('');
+name4 = name2.toLocaleLowerCase().replaceAll(' ','').split('').sort().join('');
+
+function isAnagram(a,b)
+{
+    if(a==b)
+     {
+        console.log(a,b+" are Anagrams...");
+    }    
+    else
+    {
+        console.log(a,b+" are not Anagrams...");
+    }
+}
+isAnagram(name3,name4);
+
+
