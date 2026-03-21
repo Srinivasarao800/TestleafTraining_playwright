@@ -55,3 +55,15 @@ Opens a new tab
 👉 Output
 
 ➡️ A new browser tab → stored in page1
+
+
+│
+├── Context 1 (User A - clean session)
+│     ├── Page 1 (gmail.com)
+│     └── Page 2 (facebook.com)
+│
+├── Context 2 (User B - clean session)
+│     ├── Page 1 (gmail.com - different login)
+│
+└── Context 3 (Guest / Incognito)
+      └── Page 1 (any website)
