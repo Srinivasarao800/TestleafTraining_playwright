@@ -1,0 +1,41 @@
+import { chromium, firefox, test } from "@playwright/test"; 
+
+test(`Test to launch a browser`, async () => { 
+
+   
+  const browser1 = await chromium.launch({'channel':'msedge','headless':false});
+const context1 = await browser1.newContext();
+const page1 = await context1.newPage();  
+await page1.goto("https://www.flipkart.com");
+    console.log(await page1.title());
+  
+
+const browser = await firefox.launch({'channel':'firefox','headless':false});
+const context = await browser.newContext();
+const page = await context.newPage();  
+await page.goto("https://www.redbus.in");
+console.log(await page.title())
+  
+
+
+          
+});
+====================================
+
+import {chromium,firefox,test} from "@playwright/test";
+{
+
+    //test decleration
+   test(`Test to launch a browser`, async () => {      
+    //laucnh the browser
+    const browser = await chromium.launch({'channel':'msedge','headless':false});
+    //creat the context
+    const  context = await browser.newContext();
+    //create the page
+     const page  = await context.newPage();
+     //launch url
+     await page.goto("https://www.samil.in/");
+
+    })
+
+}
