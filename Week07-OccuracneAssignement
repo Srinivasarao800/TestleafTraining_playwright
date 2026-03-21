@@ -1,0 +1,35 @@
+
+//Logic 1
+const nums = [2,4,5,2,1,2]
+const k = 2;
+let count = 0;
+
+for(let i =0;i<nums.length;i++)
+{
+    if(nums[i]===k)
+    {
+        count++;
+    }
+}
+console.log(count);
+
+//logic 2
+const nums1 = [2,4,5,2,1,2]
+const k1 = 2;
+let count1 = 0;
+
+const occurance = nums1.filter((nums1)=>nums1===k1).length
+console.log(occurance);
+
+
+
+//logic 3
+const nums3 = [2,4,5,2,1,2]
+const k3 = 2;
+let count3= 0;
+function occurancecheck(k)
+{
+    const occurance = nums.filter((nums3)=>nums3===k3).length
+    console.log(occurance);
+}
+occurancecheck(k3)
