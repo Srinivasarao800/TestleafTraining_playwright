@@ -1,0 +1,57 @@
+
+const browser1 = await chromium.launch({'channel':'msedge','headless':false});
+const context1 = await browser1.newContext();
+const page1 = await context1.newPage();
+
+✅ 1. Line-by-line Meaning
+🔸 1st Line
+const browser1 = await chromium.launch({'channel':'msedge','headless':false});
+🔍 Breakdown
+const
+Declares a variable (cannot be reassigned)
+browser1
+Variable name → stores browser instance
+await
+Waits for async operation to complete
+Required because browser launch takes time
+chromium
+Playwright browser engine (like Chrome/Edge base)
+launch()
+Starts a new browser instance
+🔧 Options inside {}
+channel: 'msedge'
+Opens Microsoft Edge browser
+Instead of default Chromium
+headless: false
+Shows UI (visible browser)
+If true → runs in background (no UI)
+👉 Output
+
+➡️ Launches Edge browser and stores it in browser1
+
+🔸 2nd Line
+const context1 = await browser1.newContext();
+🔍 Breakdown
+browser1.newContext()
+Creates a new browser context
+🧠 What is Context?
+Like a separate user session
+Similar to:
+Incognito window
+New profile
+👉 Why use it?
+Isolate tests
+No cookies/shared data
+Run multiple sessions independently
+👉 Output
+
+➡️ Creates a fresh session → stored in context1
+
+🔸 3rd Line
+const page1 = await context1.newPage();
+🔍 Breakdown
+newPage()
+Opens a new tab
+👉 Output
+
+➡️ A new browser tab → stored in page1
