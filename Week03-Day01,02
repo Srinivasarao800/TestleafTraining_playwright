@@ -78,7 +78,7 @@ function isAnagram(a,b)
 }
 isAnagram(name3,name4);
 
-
+========================================Browser Launch===========================================
 import { chromium, firefox, test, webkit } from "@playwright/test"; 
 test(`Test to launch a browser`, async ({page}) => {  //pagefixtuture
 
