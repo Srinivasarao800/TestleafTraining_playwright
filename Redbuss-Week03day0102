@@ -39,3 +39,67 @@ import {chromium,firefox,test} from "@playwright/test";
     })
 
 }
+
+
+======================================================
+
+import {test,chromium} from "@playwright/test"
+import { TIMEOUT } from "dns/promises";
+test("Edit the Lead in CRM Appliocation",async({page})=>{
+
+    //Lauch the CRM Application....
+    await page.goto("http://leaftaps.com/opentaps/control/main");
+    //Add the explictit Wait for the Checking the browser is launched or not..
+    await page.waitForTimeout(300);
+
+
+    //Generat locators
+    //Enter the username as ‘Demosalesmanager’
+    await page.locator(`#username`).fill(`Demosalesmanager`);
+
+    //Enter the password as ‘crmsfa’
+    await page.locator(`#password`).fill(`crmsfa`);
+
+    //CSS Locators
+    //Click the Login button
+    await page.locator(`[class="decorativeSubmit"]`).click();
+
+     //Add the explictit Wait for the Checking the Login button is cliecked or not..
+    await page.waitForTimeout(300);
+
+    //Click CRM/SFA
+    await page.locator(`[id="label"]`).click();
+
+    //Add the explictit Wait for the Checking the CRM/SFA is cliecked or not..
+     await page.waitForTimeout(3000);
+
+     //Click Leads
+     await page.locator(`[href="/crmsfa/control/leadsMain"]`).click();
+    // Click Create Lead
+    await page.locator(`[href='/crmsfa/control/createLeadForm']`).click();
+    // Fill the Company Name
+    await page.locator(`[id="createLeadForm_companyName"]`).fill("TSR");
+    // Fill the First Name
+     await page.locator(`[id="createLeadForm_firstName"]`).fill(`TEKULAPALLI`);
+    // Fill the Last Name
+     await page.locator(`[id="createLeadForm_lastName"]`).fill(`SRINIVASARAO`);
+    // Fill the Salutation
+     await page.locator(`[id="createLeadForm_personalTitle"]`).fill(`NA`);
+    // Fill the Title
+     await page.locator(`[id="createLeadForm_generalProfTitle"]`).fill(`M.R`);
+    // Fill the Annual Revenue
+     await page.locator(`[id="createLeadForm_annualRevenue"]`).fill(`200000`);
+    // Fill the Department
+     await page.locator(`[id="createLeadForm_departmentName"]`).fill(`LMS`);
+    // Fill the Phone number
+     await page.locator(`[id="createLeadForm_primaryPhoneNumber"]`).fill(`9876543210`);
+    // Click Create Lead button
+     await page.locator(`[name="submitButton"]`).click();
+    // Get the page title
+    
+     console.log( await page.title());
+
+
+
+
+})
