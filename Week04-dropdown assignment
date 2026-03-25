@@ -1,0 +1,122 @@
+/*1. Navigate to https://leafground.com/select.xhtml 
+2. Select your favorite UI automation tool using the different select options 
+3. Get the count and print of all the values 
+4. Choose your preferred Country
+5. Confirm Cities belongs to Country is loaded 
+6. Choose any three courses from the dropdown 
+7. Choose a language and print all the values from the dropdown. 
+8. Select 'Two' irrespective of the language chosen 
+*/
+
+import {test,chromium, expect} from "@playwright/test"
+test("Handeling Dropdown.", async({page})=>{
+
+    // Navigate to https://leafground.com/select.xhtml 
+    await page.goto(`https://leafground.com/select.xhtml`);
+
+    //2. Select your favorite UI automation tool using the different select options 
+    await page.selectOption(`//select[@class="ui-selectonemenu"]`,{label:"Playwright"});
+
+    //3. Get the count and print of all the values way 1
+    const dropdownCount = await page.locator(`//select[@class="ui-selectonemenu"]/option`);
+    const drp = await dropdownCount.count()
+    console .log(drp);
+
+     //3. Get the count and print of all the values  way 1
+     const drpcount = await page.$$(`//select[@class="ui-selectonemenu"]/option`);
+     console.log(drpcount.length);
+
+    //it is a custom dropdown so we are not alble to use the selectOption
+    //4. Choose your preferred Country
+    //locating the specific tag
+    await page.locator(`//label[text()="Select Country"]`).click()
+    // Select value
+    await page.getByRole('option', { name: 'USA'}).click();
+    await page.waitForTimeout(300);
+
+    //5. Confirm Cities belongs to Country is loaded 
+    //Step1 : Locate the dropdown
+    await page.locator(`//label[text()="Select City"]`).click()
+
+    //step2: load options and wait the element to loaded at least first emenent..
+    const citiesop = await page
+  .locator(`//ul[contains(@id,'city_items')]/li`)
+  await expect(citiesop.first()).toBeVisible();
+
+  //Store the all element in to a variable
+   const cities = await page
+  .locator(`//ul[contains(@id,'city_items')]/li`)
+  .allTextContents();
+  
+  //check with the assertion weather city constins the and loaded particuarl coutry cities or not.
+  await expect(cities).toContain('Denver');
+    await page.waitForTimeout(200);
+
+    //6. Choose any three courses from the dropdown 
+        //Step1: Click on the specifi Element to locate the dropdown
+        const coursedrp = await page.locator('//button[@aria-label="Show Options"]');
+        await coursedrp.click();
+        //Step 2: Wait for the certain timeout to load the page..
+    await page.waitForTimeout(200);
+        //step 3: to selected the any three courses from the dropdown 
+        //first to store the all element in to variable
+    const lsitofdrp = await page.locator('body>span>ul>li');
+    const naa = await lsitofdrp.count();
+    let selectedCount = 0;
+    // loop
+for (let i = 0; i < naa; i++) {
+
+    if (selectedCount === 3) {
+        break;
+    }
+    // reopen dropdown every time (important)
+    if (!(await lsitofdrp.first().isVisible())) {
+        await coursedrp.click();
+    }
+
+    const labeltext = await lsitofdrp.nth(i).textContent();
+
+    if (
+        labeltext?.includes('AWS') ||
+        labeltext?.includes('Playwright') ||
+        labeltext?.includes('JMeter')
+    ) {
+
+        //  use fresh locator (avoid stale element)
+        await page.locator('body>span>ul>li')
+                  .filter({ hasText: labeltext })
+                  .first()
+                  .click();
+                  selectedCount++;
+        await page.waitForTimeout(3000);
+    }
+}
+   
+//7. Choose a language and print all the values from the dropdown. 
+const lanclick= await page.locator(`//label[text()='Select Language']`);
+await lanclick.click()
+await page.getByRole('option', { name: 'English'}).click();
+//Collctiong the all names in to a array.  //ul[contains(@id, 'lang_items')]/li
+//Collctiong the all names in to a array.  //ul[contains(@id, 'lang_items')]/li
+const languageList = await page.locator(`//ul[contains(@id, 'lang_items')]/li`);
+console.log(await languageList.allTextContents());
+
+//Collctiong the all names in to a array.  //ul[contains(@id, 'lang_items')]/li
+const languageList2 = await page.$$(`//ul[contains(@id, 'lang_items')]/li`);
+const lnacount=  languageList2.length;
+for(let l of languageList2)
+{
+    console.log((await l.textContent()));
+}
+
+
+//8. Select 'Two' irrespective of the language chosen 
+await page.getByRole('combobox')
+          .filter({ hasText: 'Select Values' })
+          .click();
+await page.waitForTimeout(3000);
+
+await page.getByRole('option', { name: 'Two' }).click();
+})
+
+
